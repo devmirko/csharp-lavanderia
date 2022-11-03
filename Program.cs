@@ -1,8 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
+using System.ComponentModel.Design;
 
 Console.WriteLine("Hello, World!");
-//Una lavanderia è aperta 24 ore su 24 e permette ai clienti di servizi autonomamente di 5 Lavatrici e 5 Asciugatrici. ( creaiamo una classe e stampiamo tutte le macchine  )
+//Una lavanderia è aperta 24 ore su 24 e permette ai clienti di servizi autonomamente di 5 Lavatrici e 5 Asciugatrici. 
 
 //clienti che usufruiscono delle macchine, possono effettuare diversi programmi di lavaggio e asciugatura ognuno con un costo diverso (in gettoni) e di una specifica durata ( 
 
@@ -22,88 +23,119 @@ Console.WriteLine("Hello, World!");
 //Possa essere richiesto il dettaglio di una macchina:
 //Tutte le informazioni relative alla macchina, nome del macchinario, stato del macchinario (in funzione o no), tipo di lavaggio in corso, quantità di detersivo presente (se una lavatrice), durata del lavaggio, tempo rimanente alla fine del lavaggio.
 //l’attuale incasso generato dall’utilizzo delle macchine.
+
+
 Lavanderia lavanderia = new Lavanderia();
+lavanderia.Stato();
+lavanderia.Macchina("lavatrice", 2);
 
-lavanderia.Stampa();
 
-public class Macchina
+
+public class Lavatrice
 {
-    public int Qtdetersivo {  private get; set; }
+    public int Qtdetersivo { private get; set; }
     public int Qtammorbidente { private get; set; }
-    public bool Stato { get; set; }
+    public string Stato { get; set; }
     public string Marca { get; set; }
-    public string Programma { get; set; }
-    public int DurataProgramma { get; set; }
-    public int DurataRimanente { get; set; }
+    public int Tempo { get; set; }
+    public int Gettoni { get; set; }
 
     //costruttore
-    public Macchina( bool stato, string marca)
+    public Lavatrice(string marca)
     {
-        this.Stato = stato;
-        this.Marca = marca;
+        Stato = "non in uso";
+        Marca = marca;
+        Gettoni = 0;
+        Qtdetersivo = 1000;
+        Qtammorbidente = 500;
+
+
 
     }
 
-    public Macchina(bool stato, string marca, int Qtdetersivo, int Qtammorbidente)
+    public void DettaglioLavatrice()
     {
-        this.Stato = stato;
-        this.Marca = marca;
-        this.Qtdetersivo = Qtdetersivo;
-        this.Qtammorbidente = Qtammorbidente;
+        Console.WriteLine("marca: " + Marca);
+        Console.WriteLine("Stato: " + Stato);
+        Console.WriteLine("Detersivo rimanente: " + Qtdetersivo);
+        Console.WriteLine("Ammorbidente rimanente: " + Qtammorbidente);
 
     }
 
 
 
 
+}
 
 
+public class Asciugatrice
+{
+    public string Stato { get; set; }
+    public string Marca { get; set; }
+    public int Tempo { get; set; }
+    public int Gettoni { get; set; }
+
+    //costruttore
+    public Asciugatrice(string marca)
+    {
+        Stato = "non in uso";
+        Marca = marca;
+        Gettoni = 0;
 
 
+    }
 
+    public void DettaglioAsciugatrice()
+    {
+        Console.WriteLine("marca: " + Marca);
+        Console.WriteLine("Stato: " + Stato);
 
-
+    }
 
 }
 
 
 public class Lavanderia
 {
-    private Macchina[] macchine;
+    private Lavatrice[] lavatrici;
+    private Asciugatrice[] asciugatrici;
 
     public Lavanderia()
     {
-        //lavatrici
-        macchine = new Macchina[10];
-        macchine[0] = new Macchina(false, "lavatrice 1", 1000, 500);
-        macchine[1] = new Macchina(false, "lavatrice 2", 1000, 500);
-        macchine[2] = new Macchina(false, "lavatrice 3", 1000, 500);
-        macchine[3] = new Macchina(false, "lavatrice 4", 1000, 500);
-        macchine[4] = new Macchina(false, "lavatrice 5", 1000, 500);
-
-        //asciugatrici
-        macchine[5] = new Macchina(false, "asciugatrice 1");
-        macchine[6] = new Macchina(false, "asciugatrice 2");
-        macchine[7] = new Macchina(false, "asciugatrice 3");
-        macchine[8] = new Macchina(false, "asciugatrice 4");
-        macchine[9] = new Macchina(false, "asciugatrice 5");
-      
-
-    }
-
-    public void Stampa()
-    {
-        for (int i = 0; i < macchine.Length; i++)
+        lavatrici = new Lavatrice[5];
+        asciugatrici = new Asciugatrice[5];
+        for (int i = 0; i < 5; i++)
         {
-            Console.WriteLine("nome: {0} -  stato: {1}", macchine[i].Marca, macchine[i].Stato);
+            lavatrici[i] = new Lavatrice("Lavatrice" + (i + 1));
+            asciugatrici[i] = new Asciugatrice("Asciugatrice" + (i + 1));
         }
     }
 
+    public void Stato()
+    {
+        for (int i = 0; i < lavatrici.Length; i++)
+        {
+            Console.WriteLine(lavatrici[i].Stato + ": " + lavatrici[i].Marca);
+            Console.WriteLine(asciugatrici[i].Stato + ": " + asciugatrici[i].Marca);
+
+
+        }
+    }
+
+    public void Macchina(string macchina, int numero)
+    {
+        Console.WriteLine("Scegli la macchina");
+        if (macchina == "lavatrice")
+            lavatrici[numero].DettaglioLavatrice();
+        else if (macchina == "asciugatrice")
+            asciugatrici[numero].DettaglioAsciugatrice();
+    }
 
 
 
 
 }
+    
 
 
 
