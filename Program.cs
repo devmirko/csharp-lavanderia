@@ -28,6 +28,9 @@ Console.WriteLine("Hello, World!");
 Lavanderia lavanderia = new Lavanderia();
 lavanderia.Stato();
 lavanderia.Macchina("lavatrice", 2);
+lavanderia.incassoTot();
+
+
 
 
 
@@ -62,10 +65,77 @@ public class Lavatrice
 
     }
 
+    private void Rinfrescante()
+    {
+            Qtdetersivo -= 20;
+            Qtammorbidente -= 5;
+            Stato = "Lavaggio Rinfrescante";
+            Tempo = 20;
+            Gettoni += 2;
+        
+    }
 
+    private void Rinnovante()
+    {
 
+            Qtdetersivo -= 40;
+            Qtammorbidente -= 10;
+            Stato = "Lavaggio Rinnovante";
+            Tempo = 40;
+            Gettoni += 3;
+    }
+
+    private void Sgrassante()
+    {
+
+        Qtdetersivo -= 60;
+        Qtammorbidente -= 16;
+        Stato = "Lavaggio Rinnovante";
+        Tempo = 60;
+        Gettoni += 4;
+    }
+
+    public void start()
+    {
+        Console.WriteLine("scegli la tipologia di lavaggio");
+        Console.WriteLine("Lavaggio Rinfrescante - numero 1");
+        Console.WriteLine("Lavaggio Rinnovante -  numero 2");
+        Console.WriteLine("Lavaggio Sgrassante - numero 3");
+
+        int scelta = Convert.ToInt32(Console.ReadLine());
+
+        switch (scelta)
+        {
+            case 1:
+                Rinfrescante();
+                break;
+            case 2:
+                Rinnovante();
+                break;
+            case 3:
+                Sgrassante();
+                break;
+            default:
+                Console.WriteLine("hai selezionato un numero errato");
+                break;
+        }
+    }
+
+    public double Incasso()
+    {
+        return (double)Gettoni * 0.50;
+    }
 
 }
+
+
+
+
+
+
+
+
+
 
 
 public class Asciugatrice
@@ -90,6 +160,10 @@ public class Asciugatrice
         Console.WriteLine("marca: " + Marca);
         Console.WriteLine("Stato: " + Stato);
 
+    }
+    public double Incasso()
+    {
+        return (double)Gettoni * 0.50;
     }
 
 }
@@ -129,6 +203,28 @@ public class Lavanderia
             lavatrici[numero].DettaglioLavatrice();
         else if (macchina == "asciugatrice")
             asciugatrici[numero].DettaglioAsciugatrice();
+    }
+
+
+    public void incassoTot()
+    {
+        double incassoTot = 0;
+        for (int i = 0; i < lavatrici.Length; i++)
+        {
+            incassoTot = incassoTot + lavatrici[i].Incasso() + asciugatrici[i].Incasso();
+
+        }
+        Console.WriteLine("Totale: " + incassoTot);
+    }
+
+
+    public void StartLavatrice()
+    {
+        for (int i = 0; i < lavatrici.Length; i++)
+        {
+            lavatrici[i].start();
+
+        }
     }
 
 
