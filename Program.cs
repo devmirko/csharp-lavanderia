@@ -28,6 +28,8 @@ Console.WriteLine("Hello, World!");
 Lavanderia lavanderia = new Lavanderia();
 lavanderia.Stato();
 lavanderia.Macchina("lavatrice", 2);
+lavanderia.AssegnaProgrammaLavatrice();
+lavanderia.AssegnaProgrammaAsciugatrice();
 lavanderia.incassoTot();
 
 
@@ -36,8 +38,8 @@ lavanderia.incassoTot();
 
 public class Lavatrice
 {
-    public int Qtdetersivo { private get; set; }
-    public int Qtammorbidente { private get; set; }
+    public int Qtdetersivo {  get; set; }
+    public int Qtammorbidente {  get; set; }
     public string Stato { get; set; }
     public string Marca { get; set; }
     public int Tempo { get; set; }
@@ -90,12 +92,12 @@ public class Lavatrice
 
         Qtdetersivo -= 60;
         Qtammorbidente -= 16;
-        Stato = "Lavaggio Rinnovante";
+        Stato = "Lavaggio Sgrassante";
         Tempo = 60;
         Gettoni += 4;
     }
 
-    public void start()
+    public void StartLavatrici()
     {
         Console.WriteLine("scegli la tipologia di lavaggio");
         Console.WriteLine("Lavaggio Rinfrescante - numero 1");
@@ -166,6 +168,51 @@ public class Asciugatrice
         return (double)Gettoni * 0.50;
     }
 
+    public void StartAsciugatrici()
+    {
+        Console.WriteLine("scegli il tipo di asciugatura");
+        Console.WriteLine("Asciugatura rapida - numero 1");
+        Console.WriteLine("Asciugatura intensa -  numero 2");
+        
+
+        int scelta = Convert.ToInt32(Console.ReadLine());
+
+        switch (scelta)
+        {
+            case 1:
+                Rapida();
+                break;
+            case 2:
+                Intensa();
+                break;
+            default:
+                Console.WriteLine("hai selezionato un numero errato");
+                break;
+        }
+    }
+
+    private void Rapida()
+    {
+        Stato = "Asciugatura rapida";
+        Tempo = 30;
+        Gettoni += 2;
+
+    }
+
+    private void Intensa()
+    {
+        Stato = "Asciugatura intensa";
+        Tempo = 30;
+        Gettoni += 2;
+
+    }
+
+
+
+
+
+
+
 }
 
 
@@ -218,11 +265,20 @@ public class Lavanderia
     }
 
 
-    public void StartLavatrice()
+    public void AssegnaProgrammaLavatrice()
     {
         for (int i = 0; i < lavatrici.Length; i++)
         {
-            lavatrici[i].start();
+            lavatrici[i].StartLavatrici();
+
+        }
+    }
+
+    public void AssegnaProgrammaAsciugatrice()
+    {
+        for (int i = 0; i < asciugatrici.Length; i++)
+        {
+            asciugatrici[i].StartAsciugatrici();
 
         }
     }
