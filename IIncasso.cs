@@ -24,7 +24,7 @@
 
 public interface IIncasso
 {
-    public double Incasso();
+    public  double Incasso();
 
 }
 

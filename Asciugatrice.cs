@@ -4,6 +4,7 @@ public class Asciugatrice : Elettrodomestico
 
     public int Tempo { get; set; }
 
+
     //costruttore
     public Asciugatrice(string marca)
     {

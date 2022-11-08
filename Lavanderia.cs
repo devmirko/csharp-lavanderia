@@ -28,7 +28,7 @@
 
 
 
-public class Lavanderia
+public class Lavanderia : IIncasso
 {
     private Lavatrice[] lavatrici;
     private Asciugatrice[] asciugatrici;
@@ -57,7 +57,6 @@ public class Lavanderia
 
     public void Macchina(string macchina, int numero)
     {
-        Console.WriteLine("Scegli la macchina");
         if (macchina == "lavatrice")
             lavatrici[numero].Dettaglio();
         else if (macchina == "asciugatrice")
@@ -65,7 +64,7 @@ public class Lavanderia
     }
 
 
-    public void incassoTot()
+    public double Incasso()
     {
         double incassoTot = 0;
         for (int i = 0; i < lavatrici.Length; i++)
@@ -73,7 +72,7 @@ public class Lavanderia
             incassoTot = incassoTot + lavatrici[i].Incasso() + asciugatrici[i].Incasso();
 
         }
-        Console.WriteLine("Totale: " + incassoTot);
+        return incassoTot;
     }
 
 

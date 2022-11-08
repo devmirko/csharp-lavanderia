@@ -1,8 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Reflection.PortableExecutable;
-
-Console.WriteLine("Hello, World!");
 //Una lavanderia è aperta 24 ore su 24 e permette ai clienti di servizi autonomamente di 5 Lavatrici e 5 Asciugatrici. 
 
 //clienti che usufruiscono delle macchine, possono effettuare diversi programmi di lavaggio e asciugatura ognuno con un costo diverso (in gettoni) e di una specifica durata ( 
@@ -25,45 +22,18 @@ Console.WriteLine("Hello, World!");
 //l’attuale incasso generato dall’utilizzo delle macchine.
 
 
-Lavanderia lavanderia = new Lavanderia();
-//lavanderia.Stato();
-//lavanderia.Macchina("lavatrice", 2);
-//lavanderia.AssegnaProgrammaLavatrice();
-//lavanderia.AssegnaProgrammaAsciugatrice();
-//lavanderia.incassoTot();
-Console.WriteLine("Inserisci un opzione");
-Console.WriteLine("1 Stato Macchine");
-Console.WriteLine("2 Dettagli macchina");
-Console.WriteLine("3 programa Lavatrici");
-Console.WriteLine("4 programma Asciugatrici");
-Console.WriteLine("5 incassi");
-
-int scelta = Convert.ToInt32(Console.ReadLine());
-
-switch (scelta)
+public  class ProgrammaLavatrice : Programma
 {
-    case 1:
-        lavanderia.Stato();
-        break;
-    case 2:
-        Console.WriteLine("lavatrice o asciugatrice");
-        string tipo = Console.ReadLine();
-        Console.WriteLine("Digita il numero");
-        int numero = Convert.ToInt32(Console.ReadLine());
-        lavanderia.Macchina(tipo, numero);
-        break;
-    case 3:
-        break;
-    case 4:
-        break;
-    case 5:
-        Console.WriteLine("incassi");
-        Console.WriteLine("Incasso Totale:" + lavanderia.Incasso() + "$");
-        break;
-    default:
-        Console.WriteLine("inserisci un numero corretto");
-        break;
+
+    public int ConsumoDetersivo { get; set; }
+    public int ConsumoAmmorbidente { get; set; }
+
+
+    public override void Start()
+    {
+
+    }
+
+
+
 }
-
-
-
