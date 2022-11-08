@@ -4,8 +4,8 @@ public class Lavatrice :  Elettrodomestico
     public int Qtdetersivo {  get; set; }
     public int Qtammorbidente {  get; set;}
 
-    
-  
+    public int Tempo { get; set; }
+
 
 
     //costruttore
@@ -86,7 +86,7 @@ public class Lavatrice :  Elettrodomestico
         }
     }
 
-    public override
+   
 
 
 }

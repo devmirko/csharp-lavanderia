@@ -6,7 +6,7 @@ public abstract class Elettrodomestico : IIncasso
     public int Gettoni { get; set; }
 
     public abstract void Dettaglio();
-    public double Incasso()
+    public double   Incasso()
     {
         return (double)Gettoni * 0.50;
     }

@@ -26,11 +26,6 @@ Console.WriteLine("Hello, World!");
 
 
 Lavanderia lavanderia = new Lavanderia();
-//lavanderia.Stato();
-//lavanderia.Macchina("lavatrice", 2);
-//lavanderia.AssegnaProgrammaLavatrice();
-//lavanderia.AssegnaProgrammaAsciugatrice();
-//lavanderia.incassoTot();
 Console.WriteLine("Inserisci un opzione");
 Console.WriteLine("1 Stato Macchine");
 Console.WriteLine("2 Dettagli macchina");
@@ -53,12 +48,13 @@ switch (scelta)
         lavanderia.Macchina(tipo, numero);
         break;
     case 3:
+        lavanderia.AssegnaProgrammaLavatrice();
         break;
     case 4:
+        lavanderia.AssegnaProgrammaAsciugatrice();
         break;
     case 5:
-        Console.WriteLine("incassi");
-        Console.WriteLine("Incasso Totale:" + lavanderia.Incasso() + "$");
+        Console.WriteLine("Incasso Totale:{0}€", lavanderia.Incasso());
         break;
     default:
         Console.WriteLine("inserisci un numero corretto");
