@@ -1,6 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-Console.WriteLine("Hello, World!");
 //Una lavanderia è aperta 24 ore su 24 e permette ai clienti di servizi autonomamente di 5 Lavatrici e 5 Asciugatrici. 
 
 //clienti che usufruiscono delle macchine, possono effettuare diversi programmi di lavaggio e asciugatura ognuno con un costo diverso (in gettoni) e di una specifica durata ( 
@@ -23,12 +22,11 @@ Console.WriteLine("Hello, World!");
 //l’attuale incasso generato dall’utilizzo delle macchine.
 
 
-Lavanderia lavanderia = new Lavanderia();
-lavanderia.Stato();
-lavanderia.Macchina("lavatrice", 2);
-lavanderia.AssegnaProgrammaLavatrice();
-lavanderia.AssegnaProgrammaAsciugatrice();
-lavanderia.incassoTot();
+public interface IIncasso
+{
+    public double Incasso();
+
+}
 
 
 

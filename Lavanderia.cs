@@ -1,6 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-Console.WriteLine("Hello, World!");
 //Una lavanderia è aperta 24 ore su 24 e permette ai clienti di servizi autonomamente di 5 Lavatrici e 5 Asciugatrici. 
 
 //clienti che usufruiscono delle macchine, possono effettuare diversi programmi di lavaggio e asciugatura ognuno con un costo diverso (in gettoni) e di una specifica durata ( 
@@ -23,14 +22,84 @@ Console.WriteLine("Hello, World!");
 //l’attuale incasso generato dall’utilizzo delle macchine.
 
 
-Lavanderia lavanderia = new Lavanderia();
-lavanderia.Stato();
-lavanderia.Macchina("lavatrice", 2);
-lavanderia.AssegnaProgrammaLavatrice();
-lavanderia.AssegnaProgrammaAsciugatrice();
-lavanderia.incassoTot();
 
 
+
+
+
+
+public class Lavanderia
+{
+    private Lavatrice[] lavatrici;
+    private Asciugatrice[] asciugatrici;
+
+    public Lavanderia()
+    {
+        lavatrici = new Lavatrice[5];
+        asciugatrici = new Asciugatrice[5];
+        for (int i = 0; i < 5; i++)
+        {
+            lavatrici[i] = new Lavatrice("Lavatrice" + (i + 1));
+            asciugatrici[i] = new Asciugatrice("Asciugatrice" + (i + 1));
+        }
+    }
+
+    public void Stato()
+    {
+        for (int i = 0; i < lavatrici.Length; i++)
+        {
+            Console.WriteLine(lavatrici[i].Stato + ": " + lavatrici[i].Marca);
+            Console.WriteLine(asciugatrici[i].Stato + ": " + asciugatrici[i].Marca);
+
+
+        }
+    }
+
+    public void Macchina(string macchina, int numero)
+    {
+        Console.WriteLine("Scegli la macchina");
+        if (macchina == "lavatrice")
+            lavatrici[numero].Dettaglio();
+        else if (macchina == "asciugatrice")
+            asciugatrici[numero].Dettaglio();
+    }
+
+
+    public void incassoTot()
+    {
+        double incassoTot = 0;
+        for (int i = 0; i < lavatrici.Length; i++)
+        {
+            incassoTot = incassoTot + lavatrici[i].Incasso() + asciugatrici[i].Incasso();
+
+        }
+        Console.WriteLine("Totale: " + incassoTot);
+    }
+
+
+    public void AssegnaProgrammaLavatrice()
+    {
+        for (int i = 0; i < lavatrici.Length; i++)
+        {
+            lavatrici[i].StartLavatrici();
+
+        }
+    }
+
+    public void AssegnaProgrammaAsciugatrice()
+    {
+        for (int i = 0; i < asciugatrici.Length; i++)
+        {
+            asciugatrici[i].StartAsciugatrici();
+
+        }
+    }
+
+
+
+
+}
+    
 
 
 
