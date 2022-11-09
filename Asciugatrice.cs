@@ -2,7 +2,6 @@
 public class Asciugatrice : Elettrodomestico
 {
 
-    public int Tempo { get; set; }
 
 
     //costruttore
@@ -11,8 +10,37 @@ public class Asciugatrice : Elettrodomestico
         Stato = "non in uso";
         Marca = marca;
         Gettoni = 0;
+        Programmi = new ProgrammaAsciugatura[2];
+        Programmi[0] = new ProgrammaAsciugatura("Programma rapido", 30, 2);
+        Programmi[1] = new ProgrammaAsciugatura("Programma intenso", 60, 4);
+        ProgrammaAttuale = new ProgrammaAsciugatura("inattivo", 0, 0);
 
 
+
+
+    }
+
+
+    public void StartAsciugatrici()
+    {
+        Console.WriteLine("Digita:");
+        Console.WriteLine("1 per Asciugatura rapida");
+        Console.WriteLine("2 per Asciugatura intensa");
+        //int scelta = Convert.ToInt32(Console.ReadLine());
+        Random random = new Random();
+        int scelta = random.Next(1, 3);
+        if (scelta == 1 || scelta == 2)
+        {
+            ProgrammaAttuale.Nome = Programmi[scelta - 1].Nome;
+            ProgrammaAttuale.Tempo = Programmi[scelta - 1].Tempo;
+            ProgrammaAttuale.TempoRimanente = Programmi[scelta - 1].Tempo;
+            ProgrammaAttuale.Costo = Programmi[scelta - 1].Costo;
+            Gettoni += ProgrammaAttuale.Costo;
+            Stato = "in uso";
+        }
+
+        else
+            Console.WriteLine("scegli un numero corretto");
     }
 
     public override void  Dettaglio()
@@ -22,46 +50,8 @@ public class Asciugatrice : Elettrodomestico
 
     }
 
-    public void StartAsciugatrici()
-    {
-        Console.WriteLine("scegli il tipo di asciugatura");
-        Console.WriteLine("Asciugatura rapida - numero 1");
-        Console.WriteLine("Asciugatura intensa -  numero 2");
-        
 
-        int scelta = Convert.ToInt32(Console.ReadLine());
-
-        switch (scelta)
-        {
-            case 1:
-                Rapida();
-                break;
-            case 2:
-                Intensa();
-                break;
-            default:
-                Console.WriteLine("hai selezionato un numero errato");
-                break;
-        }
-    }
-
-    private void Rapida()
-    {
-        Stato = "Asciugatura rapida";
-        Tempo = 30;
-        Gettoni += 2;
-
-    }
-
-    private void Intensa()
-    {
-        Stato = "Asciugatura intensa";
-        Tempo = 30;
-        Gettoni += 2;
-
-    }
-
-
+  
 
 
 

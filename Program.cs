@@ -26,40 +26,47 @@ Console.WriteLine("Hello, World!");
 
 
 Lavanderia lavanderia = new Lavanderia();
-Console.WriteLine("Inserisci un opzione");
-Console.WriteLine("1 Stato Macchine");
-Console.WriteLine("2 Dettagli macchina");
-Console.WriteLine("3 programa Lavatrici");
-Console.WriteLine("4 programma Asciugatrici");
-Console.WriteLine("5 incassi");
-
-int scelta = Convert.ToInt32(Console.ReadLine());
-
-switch (scelta)
+bool stop = false;
+do
 {
-    case 1:
-        lavanderia.Stato();
-        break;
-    case 2:
-        Console.WriteLine("lavatrice o asciugatrice");
-        string tipo = Console.ReadLine();
-        Console.WriteLine("Digita il numero");
-        int numero = Convert.ToInt32(Console.ReadLine());
-        lavanderia.Macchina(tipo, numero);
-        break;
-    case 3:
-        lavanderia.AssegnaProgrammaLavatrice();
-        break;
-    case 4:
-        lavanderia.AssegnaProgrammaAsciugatrice();
-        break;
-    case 5:
-        Console.WriteLine("Incasso Totale:{0}€", lavanderia.Incasso());
-        break;
-    default:
-        Console.WriteLine("inserisci un numero corretto");
-        break;
-}
+    Console.WriteLine("Inserisci un opzione");
+    Console.WriteLine("1 Stato Macchine");
+    Console.WriteLine("2 Dettagli macchina");
+    Console.WriteLine("3 programa Lavatrici");
+    Console.WriteLine("4 programma Asciugatrici");
+    Console.WriteLine("5 incassi");
+    Console.WriteLine("6 esci");
+
+    int scelta = Convert.ToInt32(Console.ReadLine());
+
+    switch (scelta)
+    {
+        case 1:
+            lavanderia.Stato();
+            break;
+        case 2:
+            Console.WriteLine("lavatrice o asciugatrice");
+            string tipo = Console.ReadLine();
+            Console.WriteLine("Digita il numero");
+            int numero = Convert.ToInt32(Console.ReadLine());
+            lavanderia.Macchina(tipo, numero);
+            break;
+        case 3:
+            lavanderia.AssegnaProgrammaLavatrice();
+            break;
+        case 4:
+            lavanderia.AssegnaProgrammaAsciugatrice();
+            break;
+        case 5:
+            Console.WriteLine("Incasso Totale:{0}€", lavanderia.Incasso());
+            break;
+        default:
+            stop = true;
+            break;
+    }
+
+} while (!stop);
+
 
 
 

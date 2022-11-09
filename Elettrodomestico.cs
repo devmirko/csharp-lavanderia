@@ -5,6 +5,9 @@ public abstract class Elettrodomestico : IIncasso
     public string Marca { get; set; }
     public int Gettoni { get; set; }
 
+    protected Programma[] Programmi;
+    public Programma ProgrammaAttuale { get; protected set; }
+
     public abstract void Dettaglio();
     public double   Incasso()
     {

@@ -80,7 +80,8 @@ public class Lavanderia : IIncasso
     {
         for (int i = 0; i < lavatrici.Length; i++)
         {
-            lavatrici[i].StartLavatrici();
+            lavatrici[i].StartLavaggio();
+            break;
 
         }
     }
